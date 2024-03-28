@@ -28,6 +28,12 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: #F5F7FB;
+  background-image: url(./assets/blob-yellow.png), url(./assets/blobs-blue.png);
+  background-repeat: no-repeat, no-repeat;
+  background-attachment: fixed, fixed;
+  background-position: right top, left bottom;
+  background-size: 21%, 17%;
 }
 
 h1 {
