@@ -16,9 +16,25 @@
   text-align: center;
   padding: 0.05rem;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  font-size: 1.2rem;
 }
 
 .start--button:hover {
   background-color: #4fe98d;
   color: #F5F7FB;
+}
+
+.quiz--selection {
+  font-family: "Karla", sans-serif;
+  font-size: 1.0rem;
+  height: 3rem;
+  border-radius: 0.5rem;
+  background-color: #D6DBF5;
+  margin-top: -1rem;
+  padding: 0.5rem;
+  width: 20rem;
+  cursor: pointer;
+}
+.quiz--heading {
+  text-align: left;
 }

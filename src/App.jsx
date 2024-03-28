@@ -4,7 +4,7 @@ import QuizOptions from '../Components/QuizOptions.jsx'
 import './App.css'
 
 function App() {
-  const [start, setStart] = useState(false)
+  const [start, setStart] = useState(true)
 
   function begin() {
     setStart(prevStat => !prevStat)
