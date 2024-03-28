@@ -4,3 +4,21 @@
   padding: 2rem;
   text-align: center;
 }
+
+.start--button {
+  cursor: pointer;
+  background-color: #4D5B9E;
+  color: #F5F7FB;
+  width: 12rem;
+  height: 4rem;
+  font-weight: bold;
+  border-radius: 1rem;
+  text-align: center;
+  padding: 0.05rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.start--button:hover {
+  background-color: #4fe98d;
+  color: #F5F7FB;
+}
