@@ -1,6 +1,6 @@
 export default function QuizOptions() {
   return (
-    <main>
+    <div className="quizoption--container">
       <h2> Choose your quiz-type </h2>
       <form >
         <label htmlFor="quiz" className="quiz--heading"><h3>Category:</h3></label>
@@ -48,6 +48,6 @@ export default function QuizOptions() {
           value="Start Quiz"
         />
       </form>
-    </main>
+    </div>
   )
 }

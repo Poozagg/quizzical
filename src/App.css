@@ -23,10 +23,13 @@
   background-color: #4fe98d;
   color: #F5F7FB;
 }
+.quizoption--container{
+  margin-top: -1rem;
+}
 
 .quiz--selection {
   font-family: "Karla", sans-serif;
-  font-size: 1.0rem;
+  font-size: 1.25rem;
   height: 3rem;
   border-radius: 0.5rem;
   background-color: #D6DBF5;
