@@ -3,6 +3,9 @@ export default function QuizOptions() {
     <main>
       <h3> Select your Category </h3>
       <h3> Select Difficulty level </h3>
+      <button>
+        <h3>Start Quiz</h3>
+      </button>
     </main>
   )
 }
