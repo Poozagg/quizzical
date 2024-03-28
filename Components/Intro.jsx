@@ -4,6 +4,8 @@ export default function Intro() {
       <h1> Quizzical </h1>
       <p> Ready to test your knowledge and tickle your brain? </p>
       <p> Welcome aboard the Quizzical app! </p> <img src="/src/assets/quiz.png" alt="logo" width="50%" />
+      <br />
+        <button className="start--button"> Start Quiz </button>
     </div>
   )
 }

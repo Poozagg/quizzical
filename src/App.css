@@ -4,3 +4,13 @@
   padding: 2rem;
   text-align: center;
 }
+
+.start--button {
+  cursor: pointer;
+  background-color: #4D5B9E;
+  color: #F5F7FB;
+  width: 12rem;
+  height: 3rem;
+  font-weight: bold;
+  border-radius: 1rem;
+}
