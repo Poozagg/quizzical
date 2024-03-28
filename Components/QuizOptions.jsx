@@ -1,8 +1,17 @@
-export default function QuizOptions() {
+export default function QuizOptions(props) {
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    console.log('submit')
+  }
+  function handleChange(event) {
+    event.preventDefault()
+    console.log('change')
+  }
   return (
     <div className="quizoption--container">
       <h2> Choose your quiz-type </h2>
-      <form >
+      <form onSubmit={handleSubmit}>
         <label htmlFor="quiz" className="quiz--heading"><h3>Category:</h3></label>
         <select name="quiz-category" id="quiz-category" className='quiz--selection'>
           <option value="any">Any Category</option>
@@ -46,6 +55,7 @@ export default function QuizOptions() {
           className='start--button'
           type="submit"
           value="Start Quiz"
+          onChange={handleChange}
         />
       </form>
     </div>
