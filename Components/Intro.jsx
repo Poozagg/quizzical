@@ -2,10 +2,10 @@ export default function Intro() {
   return (
     <div>
       <h1> Quizzical </h1>
-      <p> Ready to test your knowledge and tickle your brain? </p>
-      <p> Welcome aboard the Quizzical app! </p> <img src="/src/assets/quiz.png" alt="logo" width="50%" />
+      <h3> Ready to test your knowledge? </h3>
+      <h3> Welcome aboard the Quizzical app! </h3> <img src="/src/assets/quiz.png" alt="logo" width="30%" />
       <br />
-        <button className="start--button"> Start Quiz </button>
+        <button className="start--button"> <h2>Start Quiz </h2></button>
     </div>
   )
 }
