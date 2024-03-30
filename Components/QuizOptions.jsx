@@ -2,18 +2,23 @@ export default function QuizOptions(props) {
 
   function handleSubmit(event) {
     event.preventDefault()
-    console.log('submit')
+    // when the form is submitted, preventing the default
+    // form submission behavior
+    // allowing to hande the form data within the React component
+    // Read the form data
+
   }
-  function handleChange(event) {
-    event.preventDefault()
-    console.log('change')
-  }
+
   return (
     <div className="quizoption--container">
       <h2> Choose your quiz-type </h2>
-      <form onSubmit={handleSubmit}>
+      <form method="post" onSubmit={handleSubmit}>
         <label htmlFor="quiz" className="quiz--heading"><h3>Category:</h3></label>
-        <select name="quiz-category" id="quiz-category" className='quiz--selection'>
+        <select
+          name="selectedQuizCategory"
+          id="quiz-category"
+          className='quiz--selection'
+        >
           <option value="any">Any Category</option>
           <option value="9">General Knowledge</option>
           <option value="10">Entertainment: Books</option>
@@ -42,7 +47,11 @@ export default function QuizOptions(props) {
         </select>
 
         <label htmlFor="quiz" className="quiz--heading"><h3>Difficulty:</h3></label>
-        <select name="quiz-difficulty" id="quiz-difficulty" className='quiz--selection'>
+        <select
+          name="selectedQuizDifficulty"
+          id="quiz-difficulty"
+          className='quiz--selection'
+        >
           <option value="any">Any Difficulty</option>
           <option value="easy">Easy</option>
           <option value="medium">Medium</option>
@@ -51,12 +60,15 @@ export default function QuizOptions(props) {
 
         <br />
         <br />
-        <input
+        {/* <input
           className='start--button'
           type="submit"
           value="Start Quiz"
           onChange={handleChange}
-        />
+        /> */}
+        <button className='start--button'>
+          Submit Quiz
+        </button>
       </form>
     </div>
   )
