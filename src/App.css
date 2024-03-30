@@ -13,12 +13,30 @@
   height: 4rem;
   font-weight: bold;
   border-radius: 1rem;
-  text-align: center;
-  padding: 0.05rem;
+  /* margin-top: 1rem; */
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  font-size: 1.2rem;
 }
 
 .start--button:hover {
   background-color: #4fe98d;
   color: #F5F7FB;
+}
+.quizoption--container{
+  margin-top: -1rem;
+}
+
+.quiz--selection {
+  font-family: "Karla", sans-serif;
+  font-size: 1.25rem;
+  height: 3rem;
+  border-radius: 0.5rem;
+  background-color: #D6DBF5;
+  margin-top: -1rem;
+  padding: 0.5rem;
+  width: 20rem;
+  cursor: pointer;
+}
+.quiz--heading {
+  text-align: left;
 }
