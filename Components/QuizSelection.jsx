@@ -17,7 +17,7 @@ export default function QuizSelection(props) {
           name="selectedQuizCategory"
           id="quiz-category"
           className='quiz--selection'
-          value = {props.category}
+          // value = {props.category}
           onChange={props.handleChangeCategory}
         >
           {/* <option value="any">Any Category</option> */}
@@ -63,14 +63,9 @@ export default function QuizSelection(props) {
 
         <br />
         <br />
-        {/* <input
-          className='start--button'
-          type="submit"
-          value="Start Quiz"
-          onChange={handleChange}
-        /> */}
+
         <button className='start--button'>
-          Submit Quiz
+          Start Quiz
         </button>
       </form>
 
