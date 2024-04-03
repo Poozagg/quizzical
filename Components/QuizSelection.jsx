@@ -1,10 +1,12 @@
 import PropTypes from 'prop-types';
-QuizSelections.propTypes = {
+QuizSelection.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   handleChangeCategory: PropTypes.func.isRequired,
-  handleChangeDifficulty: PropTypes.func.isRequired
+  handleChangeDifficulty: PropTypes.func.isRequired,
+  category: PropTypes.string.isRequired,
+  difficulty: PropTypes.string.isRequired
 };
-export default function QuizSelections(props) {
+export default function QuizSelection(props) {
 
   return (
     <div className="quizoption--container">
@@ -15,6 +17,7 @@ export default function QuizSelections(props) {
           name="selectedQuizCategory"
           id="quiz-category"
           className='quiz--selection'
+          value = {props.category}
           onChange={props.handleChangeCategory}
         >
           {/* <option value="any">Any Category</option> */}
@@ -49,6 +52,7 @@ export default function QuizSelections(props) {
           name="selectedQuizDifficulty"
           id="quiz-difficulty"
           className='quiz--selection'
+          // value = {props.difficulty}
           onChange={props.handleChangeDifficulty}
         >
           {/* <option value="any">Any Difficulty</option> */}
@@ -69,6 +73,7 @@ export default function QuizSelections(props) {
           Submit Quiz
         </button>
       </form>
+
     </div>
   )
 }
