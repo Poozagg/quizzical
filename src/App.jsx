@@ -47,7 +47,7 @@ function App() {
     fetch(url)
     .then (res => res.json())
     .then (data => console.log(data['results']))
-  })
+  },[])
 
 
   function questionAnswer(){

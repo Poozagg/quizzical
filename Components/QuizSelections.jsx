@@ -1,3 +1,9 @@
+import PropTypes from 'prop-types';
+QuizSelections.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  handleChangeCategory: PropTypes.func.isRequired,
+  handleChangeDifficulty: PropTypes.func.isRequired
+};
 export default function QuizSelections(props) {
 
   return (
