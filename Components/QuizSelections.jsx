@@ -1,25 +1,17 @@
-export default function QuizOptions(props) {
-
-  function handleSubmit(event) {
-    event.preventDefault()
-    // when the form is submitted, preventing the default
-    // form submission behavior
-    // allowing to hande the form data within the React component
-    // Read the form data
-
-  }
+export default function QuizSelections(props) {
 
   return (
     <div className="quizoption--container">
       <h2> Choose your quiz-type </h2>
-      <form method="post" onSubmit={handleSubmit}>
+      <form method="post" onSubmit={props.handleSubmit}>
         <label htmlFor="quiz" className="quiz--heading"><h3>Category:</h3></label>
         <select
           name="selectedQuizCategory"
           id="quiz-category"
           className='quiz--selection'
+          onChange={props.handleChangeCategory}
         >
-          <option value="any">Any Category</option>
+          {/* <option value="any">Any Category</option> */}
           <option value="9">General Knowledge</option>
           <option value="10">Entertainment: Books</option>
           <option value="11">Entertainment: Film</option>
@@ -51,8 +43,9 @@ export default function QuizOptions(props) {
           name="selectedQuizDifficulty"
           id="quiz-difficulty"
           className='quiz--selection'
+          onChange={props.handleChangeDifficulty}
         >
-          <option value="any">Any Difficulty</option>
+          {/* <option value="any">Any Difficulty</option> */}
           <option value="easy">Easy</option>
           <option value="medium">Medium</option>
           <option value="hard">Hard</option>
