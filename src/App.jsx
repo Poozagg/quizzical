@@ -50,7 +50,7 @@ function App() {
   // any time the quizSelection changes, the useEffect hook will run
   // apiresultArray is an array of objects
   useEffect(() => {
-    const url = `https://opentdb.com/api.php?amount=10&category=${quizSelection.category}&category=${quizSelection.difficulty}&type=multiple`
+    const url = `https://opentdb.com/api.php?amount=10&category=${quizSelection.category}&difficulty=${quizSelection.difficulty}&type=multiple`
     // console.log(url)
 
     fetch(url)
@@ -69,7 +69,7 @@ function App() {
       }))
       ))
     },[quizSelection])
-    console.log(quizQuestions)
+    // console.log(quizQuestions)
 
   // --! onClick function which will display the questions !--
   const quizQandAArray = quizQuestions.map((item) => {
@@ -85,7 +85,7 @@ function App() {
   function displayQuiz() {
     setStartQuiz(prevStartQuiz => !prevStartQuiz)
     // setStart(prevStart => !prevStart)
-    console.log(quizQuestions)
+    // console.log(quizQuestions)
     // quizQandAArray
   }
 
