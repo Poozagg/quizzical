@@ -1,5 +1,25 @@
-export default function Quiz() {
+import PropTypes from 'prop-types'
+
+export default function Quiz(props) {
+  const suffledAnswers = props.answers.sort(() => Math.random() - 0.5)
   return (
-    console.log('Quiz component')
+    <div>
+      <div>
+        <h3>{props.question}</h3>
+        <ul>
+          {suffledAnswers.map( (answer, index) => (
+            <li key={index}>{answer}</li>
+          ))}
+        </ul>
+      </div>
+      {/* <button className='start--button'>
+        Check answers
+      </button> */}
+    </div>
   )
+}
+
+Quiz.propTypes = {
+  question: PropTypes.string.isRequired,
+  answers: PropTypes.array.isRequired
 }

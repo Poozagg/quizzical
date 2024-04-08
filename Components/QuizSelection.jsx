@@ -1,11 +1,4 @@
 import PropTypes from 'prop-types';
-QuizSelection.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
-  handleChangeCategory: PropTypes.func.isRequired,
-  handleChangeDifficulty: PropTypes.func.isRequired,
-  category: PropTypes.string.isRequired,
-  difficulty: PropTypes.string.isRequired
-};
 export default function QuizSelection(props) {
 
   return (
@@ -14,13 +7,13 @@ export default function QuizSelection(props) {
       <form method="post" onSubmit={props.handleSubmit}>
         <label htmlFor="quiz" className="quiz--heading"><h3>Category:</h3></label>
         <select
-          name="selectedQuizCategory"
+          name="category"
           id="quiz-category"
           className='quiz--selection'
-          // value = {props.category}
-          onChange={props.handleChangeCategory}
+          value = {props.category}
+          onChange={props.handleCategoryChange}
         >
-          {/* <option value="any">Any Category</option> */}
+          <option value="">--Choose--</option>
           <option value="9">General Knowledge</option>
           <option value="10">Entertainment: Books</option>
           <option value="11">Entertainment: Film</option>
@@ -49,13 +42,13 @@ export default function QuizSelection(props) {
 
         <label htmlFor="quiz" className="quiz--heading"><h3>Difficulty:</h3></label>
         <select
-          name="selectedQuizDifficulty"
+          name="difficulty"
           id="quiz-difficulty"
           className='quiz--selection'
-          // value = {props.difficulty}
-          onChange={props.handleChangeDifficulty}
+          value = {props.difficulty}
+          onChange={props.handleDifficultyChange}
         >
-          {/* <option value="any">Any Difficulty</option> */}
+          <option value="">--Choose--</option>
           <option value="easy">Easy</option>
           <option value="medium">Medium</option>
           <option value="hard">Hard</option>
@@ -64,7 +57,10 @@ export default function QuizSelection(props) {
         <br />
         <br />
 
-        <button className='start--button'>
+        <button
+          className='start--button'
+          onClick={props.displayQuiz}
+        >
           Start Quiz
         </button>
       </form>
@@ -72,3 +68,13 @@ export default function QuizSelection(props) {
     </div>
   )
 }
+
+QuizSelection.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  handleCategoryChange: PropTypes.func.isRequired,
+  handleDifficultyChange: PropTypes.func.isRequired,
+  quizSelection: PropTypes.object.isRequired,
+  displayQuiz: PropTypes.func.isRequired,
+  category: PropTypes.string.isRequired,
+  difficulty: PropTypes.string.isRequired
+};
