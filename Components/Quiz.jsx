@@ -8,7 +8,11 @@ export default function Quiz(props) {
       <div>
         <h3>{props.question}</h3>
         <ul>
-            <li>{suffledAnswers}</li>
+            {suffledAnswers.map(answer => (
+              <li key={answer} className="Quiz--Answer--Options">
+                {answer}
+              </li>
+            ))}
         </ul>
       </div>
       {/* <button className='start--button'>

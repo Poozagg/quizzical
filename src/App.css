@@ -57,3 +57,18 @@
 .quiz--heading {
   text-align: left;
 }
+.Quiz--Answer--Options {
+  list-style-type: none;
+  display: inline-block;
+  border: 0.1rem solid #4D5B9E;
+  border-radius: 1rem;
+  margin-right: 1rem;
+  padding: 0.4rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin-bottom: 0.5rem;
+}
+.Quiz--Answer--Options:hover {
+  cursor: pointer;
+  background-color: #D6DBF5;
+}
