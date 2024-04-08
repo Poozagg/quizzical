@@ -98,8 +98,11 @@ function App() {
 
   return (
     <main>
+      {<Intro clickHandler={begin} />}
+
       {<Intro clickHandler={begin} /> && start === false}
-      {start ? <QuizSelection
+
+      {/* {start ? <QuizSelection
         handleSubmit={handleSubmit}
         handleCategoryChange={handleCategoryChange}
         handleDifficultyChange={handleDifficultyChange}
@@ -109,7 +112,7 @@ function App() {
         displayQuiz={displayQuiz}
       /> : null}
       {startQuiz ? quizQandAArray  : null}
-      {/* {displayQuiz && start === false} */}
+      {displayQuiz && start === false} */}
     </main>
   )
 }

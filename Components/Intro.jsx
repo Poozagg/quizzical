@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 export default function Intro(props) {
   return (
     <div>
@@ -6,11 +7,15 @@ export default function Intro(props) {
       <h3> Welcome aboard the Quizzical app! </h3> <img src="/src/assets/quiz.png" alt="logo" width="30%" />
       <br />
         <button
-          className="start--button"
+          className="begin--button"
           onClick={props.clickHandler}
         >
-          <h3>Begin</h3>
+          Begin
         </button>
     </div>
   )
+}
+
+Intro.propTypes = {
+  clickHandler: PropTypes.func.isRequired
 }

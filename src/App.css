@@ -5,6 +5,23 @@
   text-align: center;
 }
 
+.begin--button {
+  cursor: pointer;
+  background-color: #4D5B9E;
+  color: #F5F7FB;
+  width: 12rem;
+  height: 4rem;
+  font-weight: bold;
+  border-radius: 1rem;
+  margin-top: 1rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  font-size: 1.5rem;
+}
+
+.begin--button:hover {
+  background-color: #4fe98d;
+  color: #F5F7FB;
+}
 .start--button {
   cursor: pointer;
   background-color: #4D5B9E;
