@@ -120,7 +120,9 @@ input[class="Quiz--Answer--Options "]{
   border-color: 0.1rem solid #4D5B9E;
 }
 .radio--button--styling input[type="radio"]:focus + label {
-  border: 0.15rem dashed #444;
+  /* border: 0.15rem dashed #e82424; */
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(21, 156, 228, 0.4);
 }
 .radio--button--styling label:hover {
   cursor: pointer;
