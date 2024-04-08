@@ -4,7 +4,24 @@
   padding: 2rem;
   text-align: center;
 }
-
+/* ---begin button---- */
+.begin--button {
+  cursor: pointer;
+  background-color: #4D5B9E;
+  color: #F5F7FB;
+  width: 12rem;
+  height: 4rem;
+  font-weight: bold;
+  border-radius: 1rem;
+  margin-top: 1rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  font-size: 1.5rem;
+}
+.begin--button:hover {
+  background-color: #4fe98d;
+  color: #F5F7FB;
+}
+/* ---start button---- */
 .start--button {
   cursor: pointer;
   background-color: #4D5B9E;
@@ -25,6 +42,27 @@
 .quizoption--container{
   margin-top: -1rem;
 }
+/* ---submit answer button---- */
+.submit--answer--button {
+  cursor: pointer;
+  background-color: #4D5B9E;
+  color: #F5F7FB;
+  width: 12rem;
+  height: 3rem;
+  font-weight: bold;
+  border-radius: 1rem;
+  /* margin-top: 1rem; */
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  /* font-size: 1.2rem; */
+}
+
+.submit--answer--button:hover {
+  background-color: rgb(222, 62, 62);
+  color: #F5F7FB;
+}
+.quizoption--container{
+  margin-top: -1rem;
+}
 
 .quiz--selection {
   font-family: "Karla", sans-serif;
@@ -39,4 +77,44 @@
 }
 .quiz--heading {
   text-align: left;
+}
+input[class="Quiz--Answer--Options "]{
+  display: none;
+}
+.Quiz--Answer--Options {
+  list-style-type: none;
+  display: inline-block;
+  color: #293264
+}
+
+/* ------radio button css--------- */
+.radio--button--styling input[type="radio"] {
+  opacity: 0;
+  position: fixed;
+  width: 0;
+}
+.radio--button--styling label {
+  list-style-type: none;
+  display: inline-block;
+  border: 0.1rem solid #4D5B9E;
+  border-radius: 1rem;
+  margin-right: 1rem;
+  padding: 0.4rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin-bottom: 0.5rem;
+  background-color: #F5F7FB;
+}
+.radio--button--styling input[type="radio"]:checked + label {
+  background-color:#D6DBF5;
+  border-color: 0.1rem solid #4D5B9E;
+}
+.radio--button--styling input[type="radio"]:focus + label {
+  /* border: 0.15rem dashed #e82424; */
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(21, 156, 228, 0.4);
+}
+.radio--button--styling label:hover {
+  cursor: pointer;
+  background-color: #D6DBF5;
 }

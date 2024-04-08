@@ -7,9 +7,8 @@ import './App.css'
 
 function App() {
   // begin i.e. select category and difficulty if you are ready
-  const [start, setStart] = useState(true)
+  const [isBegin, setIsBegin] = useState(false)
   // to start quiz after selecting category and difficulty
-  const [startQuiz, setStartQuiz] = useState(false)
 
   //
 
@@ -20,19 +19,22 @@ function App() {
   const [difficulty, setDifficulty] = useState("")
   const [quizSelection, setQuizSelection] = useState({
     category: category,
-    difficulty: difficulty
+    difficulty: difficulty,
   })
 
+  const [isStartQuiz, setIsStartQuiz] = useState(false)
 
 
-  function begin() {
-    setStart(prevStat => !prevStat)
+  function begin(event) {
+    event.preventDefault()
+    setIsBegin(true)
+  }
     // when you click begin quiz button
     // you should see the QuizSelections component
     // instead of the Intro component
     // useState hook to manage this
     // and the clickHandler function to change the state of the component
-  }
+
 
   // --! callback function as props to QuizSelection component so that props can be passed to App!--
   function handleSubmit(e) {
@@ -41,7 +43,7 @@ function App() {
     e.preventDefault()
     setQuizSelection({
         category: category,
-        difficulty: difficulty
+        difficulty: difficulty,
       }
     )
   }
@@ -59,57 +61,60 @@ function App() {
   // any time the quizSelection changes, the useEffect hook will run
   // apiresultArray is an array of objects
   useEffect(() => {
-    const url = `https://opentdb.com/api.php?amount=10&category=${quizSelection.category}&difficulty=${quizSelection.difficulty}&type=multiple`
-    // console.log(url)
+    const url = `https://opentdb.com/api.php?amount=10&category=${quizSelection.category}&difficulty=${quizSelection.difficulty}&type=multiple`;
 
     fetch(url)
-    .then (res => res.json())
-    .then (data => (
-      // console.log(Array.isArray(data.results))
-      // setter functions to set quizQuestions - mapping through each item to get questions & answers
-      setQuizQuestions(data.results.map((item) => {
-        // const {question, correct_answer, answers} = item
-        return {
-          id: nanoid(),
-          question: item.question,
-          correct_answer: item.correct_answer,
-          answers: [...item.incorrect_answers, item.correct_answer]
-        }
-      }))
-      ))
-    },[quizSelection])
+        .then(res => res.json())
+        .then(data => {
+            // Log the data received from the API
+            console.log("is data.results from API an array?");
+            console.log(Array.isArray(data.results));
+            // Check if data.results exists before mapping over it
+            if (data.results && Array.isArray(data.results)) {
+                // setter functions to set quizQuestions - mapping through each item to get questions & answers
+                setQuizQuestions(data.results.map((item) => ({
+                    id: nanoid(),
+                    question: item.question,
+                    correct_answer: item.correct_answer,
+                    answers: [...item.incorrect_answers, item.correct_answer]
+                })));
+            } else {
+                console.log('Data received from the API does not have the expected structure');
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching quiz data:', error);
+        });
+  }, [quizSelection]);
     // console.log(quizQuestions)
-
-  // --! onClick function which will display the questions and answer options !--
-  const quizQandAArray = quizQuestions.map((item) => {
-    return (
-      <Quiz
-        key={item.id}
-        question={item.question}
-        answers={item.answers}
-      />
-    )
-  })
 
   function displayQuiz() {
     // callback function to display the quiz after category and difficulty are selected
-    setStartQuiz(prevStartQuiz => !prevStartQuiz)
+    setIsStartQuiz(true)
+    // console.log(isStartQuiz)
   }
 
   return (
     <main>
-      {<Intro clickHandler={begin} /> && start === false}
-      {start ? <QuizSelection
-        handleSubmit={handleSubmit}
-        handleCategoryChange={handleCategoryChange}
-        handleDifficultyChange={handleDifficultyChange}
-        quizSelection={quizSelection}
-        category={category}
-        difficulty={difficulty}
-        displayQuiz={displayQuiz}
-      /> : null}
-      {startQuiz ? quizQandAArray  : null}
-      {/* {displayQuiz && start === false} */}
+
+      {/* {componentRendering()} */}
+
+      {isBegin === false && <Intro clickHandler={begin} />}
+
+      {isBegin === true && !isStartQuiz && (
+        <QuizSelection
+          handleSubmit={handleSubmit}
+          handleCategoryChange={handleCategoryChange}
+          handleDifficultyChange={handleDifficultyChange}
+          quizSelection={quizSelection}
+          category={category}
+          difficulty={difficulty}
+          displayQuiz={displayQuiz}
+        />
+      )}
+
+      {/* Render Quiz component if isStartQuiz is true */}
+      {isStartQuiz && <Quiz quizQuestions={quizQuestions}/> }
     </main>
   )
 }
