@@ -1,16 +1,16 @@
 import PropTypes from 'prop-types'
 
 export default function Quiz(props) {
-  // const suffledAnswers = props.answers.sort(() => Math.random() - 0.5)
+  const suffledAnswers = props.answers.sort(() => Math.random() - 0.5)
   return (
     <div>
       <div>
         <h3>{props.question}</h3>
-        {/* <ul>
-          {suffledAnswers.map( answer => (
-            <li>{answer}</li>
+        <ul>
+          {suffledAnswers.map( (answer, index) => (
+            <li key={index}>{answer}</li>
           ))}
-        </ul> */}
+        </ul>
       </div>
       {/* <button className='start--button'>
         Check answers

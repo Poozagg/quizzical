@@ -6,15 +6,23 @@ import { nanoid } from 'nanoid'
 import './App.css'
 
 function App() {
+  // begin i.e. select category and difficulty if you are ready
   const [start, setStart] = useState(true)
+  // to start quiz after selecting category and difficulty
   const [startQuiz, setStartQuiz] = useState(false)
-  const [apiResultArray, setApiResultArray] = useState([])
+
+  //
+
+  // to store the Q&A from the API which will be displayed
   const [quizQuestions, setQuizQuestions] = useState([])
-  const [quizAnswerOptions, setAnswerOptions] = useState([])
+
+  const [category, setCategory] = useState("")
+  const [difficulty, setDifficulty] = useState("")
   const [quizSelection, setQuizSelection] = useState({
-    category: "",
-    difficulty: ""
+    category: category,
+    difficulty: difficulty
   })
+
 
 
   function begin() {
@@ -28,21 +36,22 @@ function App() {
 
   // --! callback function as props to QuizSelection component so that props can be passed to App!--
   function handleSubmit(e) {
-    e.preventDefault()
     // when the form is submitted, preventing the default form submission behavior
     // refreshes the page, so we don't want that
-  }
-  function handleChange(e) {
-    // dynamic name and value from the event object so
-    // works for both category and difficulty event listeners
-    const {name, value} = e.target
-    // console.log(e.target.name, e.target.value)
-    setQuizSelection(prevQuizSelection => {
-      return {
-        ...prevQuizSelection,
-        [name]: value
+    e.preventDefault()
+    setQuizSelection({
+        category: category,
+        difficulty: difficulty
       }
-    })
+    )
+  }
+  function handleCategoryChange(e) {
+    // console.log(e.target.name, e.target.value)
+    setCategory(e.target.value)
+  }
+  function handleDifficultyChange(e) {
+    // console.log(e.target.name, e.target.value)
+    setDifficulty(e.target.value)
   }
 
 
@@ -56,7 +65,7 @@ function App() {
     fetch(url)
     .then (res => res.json())
     .then (data => (
-      // console.log(data.results)
+      // console.log(Array.isArray(data.results))
       // setter functions to set quizQuestions - mapping through each item to get questions & answers
       setQuizQuestions(data.results.map((item) => {
         // const {question, correct_answer, answers} = item
@@ -71,7 +80,7 @@ function App() {
     },[quizSelection])
     // console.log(quizQuestions)
 
-  // --! onClick function which will display the questions !--
+  // --! onClick function which will display the questions and answer options !--
   const quizQandAArray = quizQuestions.map((item) => {
     return (
       <Quiz
@@ -83,10 +92,8 @@ function App() {
   })
 
   function displayQuiz() {
+    // callback function to display the quiz after category and difficulty are selected
     setStartQuiz(prevStartQuiz => !prevStartQuiz)
-    // setStart(prevStart => !prevStart)
-    // console.log(quizQuestions)
-    // quizQandAArray
   }
 
   return (
@@ -94,12 +101,15 @@ function App() {
       {<Intro clickHandler={begin} /> && start === false}
       {start ? <QuizSelection
         handleSubmit={handleSubmit}
-        handleChange={handleChange}
+        handleCategoryChange={handleCategoryChange}
+        handleDifficultyChange={handleDifficultyChange}
         quizSelection={quizSelection}
+        category={category}
+        difficulty={difficulty}
         displayQuiz={displayQuiz}
       /> : null}
       {startQuiz ? quizQandAArray  : null}
-      {displayQuiz && start === false}
+      {/* {displayQuiz && start === false} */}
     </main>
   )
 }

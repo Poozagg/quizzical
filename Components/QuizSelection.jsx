@@ -10,8 +10,8 @@ export default function QuizSelection(props) {
           name="category"
           id="quiz-category"
           className='quiz--selection'
-          value = {props.quizSelection.category}
-          onChange={props.handleChange}
+          value = {props.category}
+          onChange={props.handleCategoryChange}
         >
           <option value="">--Choose--</option>
           <option value="9">General Knowledge</option>
@@ -45,8 +45,8 @@ export default function QuizSelection(props) {
           name="difficulty"
           id="quiz-difficulty"
           className='quiz--selection'
-          value = {props.quizSelection.difficulty}
-          onChange={props.handleChange}
+          value = {props.difficulty}
+          onChange={props.handleDifficultyChange}
         >
           <option value="">--Choose--</option>
           <option value="easy">Easy</option>
@@ -71,9 +71,10 @@ export default function QuizSelection(props) {
 
 QuizSelection.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
-  handleChange: PropTypes.func.isRequired,
+  handleCategoryChange: PropTypes.func.isRequired,
+  handleDifficultyChange: PropTypes.func.isRequired,
   quizSelection: PropTypes.object.isRequired,
-  displayQuiz: PropTypes.func.isRequired
-  // category: PropTypes.string.isRequired,
-  // difficulty: PropTypes.string.isRequired
+  displayQuiz: PropTypes.func.isRequired,
+  category: PropTypes.string.isRequired,
+  difficulty: PropTypes.string.isRequired
 };
