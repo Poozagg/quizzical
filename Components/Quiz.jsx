@@ -2,27 +2,49 @@ import PropTypes from 'prop-types'
 import shuffleArray from 'shuffle-array'
 
 export default function Quiz(props) {
-  const suffledAnswers = shuffleArray(props.answers)
+  // --! onClick function which will display the questions and answer options !--
+  // const quizQandA = props.quizQuestions.map((item) => {
+  //   return (
+  //     <Quiz
+  //       key={item.id}
+  //       question={item.question}
+  //       answers={item.answers}
+  //     />
+  //   )
+  // })
+  // --! function which will display the questions and answer options !--
+  const questionAndAnswers = props.quizQuestions.map((item) => {
+    const answers = shuffleArray(item.answers)
+    return (
+      <div key={item.id}>
+        <h3>{item.question}</h3>
+        <ul className="radio--button--styling">
+          {answers.map((answer, index) => (
+            <li className="Quiz--Answer--Options" key={index}>
+              <input type='radio' id={answer} name={item.id} value={answer} />
+              <label htmlFor={answer}>{answer}</label>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
+  })
+
+
   return (
     <div>
       <div>
-        <h3>{props.question}</h3>
-        <ul>
-            {suffledAnswers.map(answer => (
-              <li key={answer} className="Quiz--Answer--Options">
-                {answer}
-              </li>
-            ))}
-        </ul>
+        {questionAndAnswers}
       </div>
-      {/* <button className='start--button'>
-        Check answers
-      </button> */}
+        <button className='submit--answer--button'>
+          Submit Answer
+        </button>
     </div>
   )
 }
 
 Quiz.propTypes = {
-  question: PropTypes.string.isRequired,
-  answers: PropTypes.array.isRequired,
+  // question: PropTypes.string.isRequired,
+  // answers: PropTypes.array.isRequired,
+  quizQuestions: PropTypes.array.isRequired
 }

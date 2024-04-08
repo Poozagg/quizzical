@@ -88,18 +88,6 @@ function App() {
   }, [quizSelection]);
     // console.log(quizQuestions)
 
-  // --! onClick function which will display the questions and answer options !--
-  const quizQandAArray = quizQuestions.map((item) => {
-    return (
-      <Quiz
-        key={item.id}
-        question={item.question}
-        answers={item.answers}
-      />
-    )
-  })
-  // const quizQandAArray = console.log(quizQuestions)
-
   function displayQuiz() {
     // callback function to display the quiz after category and difficulty are selected
     setIsStartQuiz(true)
@@ -126,7 +114,7 @@ function App() {
       )}
 
       {/* Render Quiz component if isStartQuiz is true */}
-      {isStartQuiz && quizQandAArray }
+      {isStartQuiz && <Quiz quizQuestions={quizQuestions}/> }
     </main>
   )
 }
