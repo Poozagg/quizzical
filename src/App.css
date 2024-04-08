@@ -84,19 +84,9 @@ input[class="Quiz--Answer--Options "]{
 .Quiz--Answer--Options {
   list-style-type: none;
   display: inline-block;
-  /* border: 0.1rem solid #4D5B9E;
-  border-radius: 1rem;
-  margin-right: 1rem;
-  padding: 0.4rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  margin-bottom: 0.5rem;
-  background-color: #F5F7FB; */
+  color: #293264
 }
-/* .Quiz--Answer--Options:hover {
-  cursor: pointer;
-  background-color: #D6DBF5;
-} */
+
 /* ------radio button css--------- */
 .radio--button--styling input[type="radio"] {
   opacity: 0;

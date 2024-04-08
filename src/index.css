@@ -43,6 +43,9 @@ h1 {
   font-family: karla;
   font-weight: 800;
 }
+h3 {
+  color: #293264;
+}
 
 button {
   border-radius: 8px;
