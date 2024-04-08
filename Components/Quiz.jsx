@@ -1,15 +1,14 @@
 import PropTypes from 'prop-types'
+import shuffleArray from 'shuffle-array'
 
 export default function Quiz(props) {
-  const suffledAnswers = props.answers.sort(() => Math.random() - 0.5)
+  const suffledAnswers = shuffleArray(props.answers)
   return (
     <div>
       <div>
         <h3>{props.question}</h3>
         <ul>
-          {suffledAnswers.map( (answer, index) => (
-            <li key={index}>{answer}</li>
-          ))}
+            <li>{suffledAnswers}</li>
         </ul>
       </div>
       {/* <button className='start--button'>
@@ -21,5 +20,5 @@ export default function Quiz(props) {
 
 Quiz.propTypes = {
   question: PropTypes.string.isRequired,
-  answers: PropTypes.array.isRequired
+  answers: PropTypes.array.isRequired,
 }

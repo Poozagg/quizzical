@@ -4,7 +4,7 @@ export default function QuizSelection(props) {
   return (
     <div className="quizoption--container">
       <h2> Choose your quiz-type </h2>
-      <form method="post" onSubmit={props.handleSubmit}>
+      <form onSubmit={props.handleSubmit}>
         <label htmlFor="quiz" className="quiz--heading"><h3>Category:</h3></label>
         <select
           name="category"
@@ -60,6 +60,7 @@ export default function QuizSelection(props) {
         <button
           className='start--button'
           onClick={props.displayQuiz}
+          type='submit'
         >
           Start Quiz
         </button>
