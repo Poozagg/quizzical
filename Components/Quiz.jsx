@@ -56,7 +56,7 @@ export default function Quiz(props) {
     // const answers = shuffleArray(item.answers)
     return (
       <div key={item.id}>
-        <h2>{decode(item.question)}</h2>
+        <h3>{decode(item.question)}</h3>
         <ul className="radio--button--styling">
           {item.answers.map((answer, index) => (
             <li className="Quiz--Answer--Options" key={index}>
@@ -80,7 +80,7 @@ export default function Quiz(props) {
 
 
   return (
-    <div>
+    <div className="quiz--view">
       <div>
         {questionAndAnswers}
       </div>
