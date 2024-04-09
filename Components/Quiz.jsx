@@ -6,9 +6,21 @@ import { useState } from 'react'
 export default function Quiz(props) {
   const [userAnswers, setUserAnswers] = useState([])
 
+  // ----! to count the score of the user ! ----
+  // also need boolean to check if the score to be displayed
+  const [score, setScore] = useState({
+    correct: 0,
+    incorrect: 0,
+    showScore: false
+  })
+
   // --! function to handle the submit button !--
   function handleSubmit() {
     calculateScore(userAnswers, props.quizQuestions)
+    setScore({
+      ...score,
+      showScore: true
+    })
   }
 
   // --! function to handle the change in the answer selected by User !--
@@ -20,12 +32,12 @@ export default function Quiz(props) {
       [e.target.name]: e.target.value
     })
   }
-  console.log(userAnswers)
+  // console.log(userAnswers)
 
   // --! check userAnser against correct answer & tally up !--
   function calculateScore(userAnswers, quizQuestions) {
-    let correctScore = props.score.correct
-    let incorrectScore = props.score.incorrect++
+    let correctScore = score.correct
+    let incorrectScore = score.incorrect++
 
     for (let i = 0; i < quizQuestions.length; i++) {
       if (userAnswers[quizQuestions[i].id] === quizQuestions[i].correct_answer) {
@@ -35,8 +47,7 @@ export default function Quiz(props) {
       }
     }
     // return console.log({ correctScore , incorrectScore })
-    return { correctScore , incorrectScore }
-
+    return { correctScore, incorrectScore }
   }
 
 
@@ -79,11 +90,15 @@ export default function Quiz(props) {
         >
           Submit Answer
         </button>
+
+        {/* conditional rendering */}
+        {score.showScore
+          &&
+        <h3>YOU SCORED {score.correct}/5 CORRECT ANSWERS </h3>}
     </div>
   )
 }
 
 Quiz.propTypes = {
   quizQuestions: PropTypes.array.isRequired,
-  score: PropTypes.object.isRequired
 }

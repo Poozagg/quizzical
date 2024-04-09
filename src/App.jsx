@@ -26,14 +26,6 @@ function App() {
   // to store the Q&A from the API which will be displayed
   const [quizQuestions, setQuizQuestions] = useState([])
 
-  // to count the score of the user
-  // also need boolean to check if the score to be displayed
-  const [score, setScore] = useState({
-    correct: 0,
-    incorrect: 0,
-    showScore: false
-  })
-
   // when you click begin quiz button
   // you should see the QuizSelections component
   // instead of the Intro component
@@ -53,6 +45,7 @@ function App() {
     // console.log(e.target.name, e.target.value)
     setDifficulty(e.target.value)
   }
+  // console.log(quizSelection)
   // --! callback function as props to QuizSelection component so that props can be passed to App!--
   function handleSubmit(e) {
     // when the form is submitted, preventing the default form submission behavior
@@ -71,7 +64,7 @@ function App() {
   // any time the quizSelection changes, the useEffect hook will run
   // apiresultArray is an array of objects
   useEffect(() => {
-    const url = `https://opentdb.com/api.php?amount=10&category=${quizSelection.category}&difficulty=${quizSelection.difficulty}&type=multiple`;
+    const url = `https://opentdb.com/api.php?amount=5&category=${quizSelection.category}&difficulty=${quizSelection.difficulty}&type=multiple`;
     // console.log(url)
     fetch(url)
         .then(res => res.json())
@@ -121,7 +114,6 @@ function App() {
         &&
         <Quiz
           quizQuestions={quizQuestions}
-          score={score}
         /> }
     </main>
   )
