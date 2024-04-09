@@ -23,7 +23,8 @@ export default function Quiz(props) {
           {answers.map((answer, index) => (
             <li className="Quiz--Answer--Options" key={index}>
               <input type='radio' id={answer} name={item.id} value={answer} />
-              <label htmlFor={answer}>{answer}</label>
+              {/* decoding the answer to display ONLY!! */}
+              <label htmlFor={answer}>{decode(answer)}</label>
             </li>
           ))}
         </ul>
