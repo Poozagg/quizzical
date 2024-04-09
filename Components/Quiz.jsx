@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 // import shuffleArray from 'shuffle-array'
 import { decode } from 'html-entities'
 import { useState } from 'react'
+import QuizResult from './QuizResult'
 
 export default function Quiz(props) {
   const [userAnswers, setUserAnswers] = useState([])
@@ -21,6 +22,7 @@ export default function Quiz(props) {
       ...score,
       showScore: true
     })
+    props.renderQuizResults
   }
 
   // --! function to handle the change in the answer selected by User !--
@@ -80,7 +82,7 @@ export default function Quiz(props) {
 
 
   return (
-    <div className="quiz--view">
+    <div>
       <div>
         {questionAndAnswers}
       </div>
@@ -92,13 +94,19 @@ export default function Quiz(props) {
         </button>
 
         {/* conditional rendering */}
-        {score.showScore
+        {/* {score.showScore
           &&
-        <h3>YOU SCORED {score.correct}/5 CORRECT ANSWERS </h3>}
+        <h3>YOU SCORED {score.correct}/5 CORRECT ANSWERS </h3>} */}
+        {score.showScore && props.setIsStartQuiz && (
+        <QuizResult
+          score={score}
+        />)}
     </div>
   )
 }
 
 Quiz.propTypes = {
   quizQuestions: PropTypes.array.isRequired,
+  setIsStartQuiz: PropTypes.func.isRequired,
+  renderQuizResults: PropTypes.func.isRequired
 }

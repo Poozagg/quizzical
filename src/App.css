@@ -5,9 +5,7 @@
   text-align: center;
   /* height: 100vh; */
 }
-.quiz--view {
-  height: 100vh;
-}
+
 /* ---begin button---- */
 .begin--button {
   cursor: pointer;

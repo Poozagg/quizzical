@@ -5,6 +5,8 @@ import Quiz from '../Components/Quiz'
 import { nanoid } from 'nanoid'
 import './App.css'
 import shuffleArray from 'shuffle-array'
+import { render } from 'react-dom'
+import QuizResult from '../Components/QuizResult'
 
 function App() {
   // begin i.e. select category and difficulty if you are ready
@@ -60,36 +62,59 @@ function App() {
     setIsStartQuiz(true)
   }
 
+  // ----! Using Async function and then use await to handle the promise!----
+
+  useEffect(() => {
+    async function getQuizQuestionsData() {
+      const url = `https://opentdb.com/api.php?amount=5&category=${quizSelection.category}&difficulty=${quizSelection.difficulty}&type=multiple`;
+      const res = await fetch(url)
+      const data = await res.json()
+      setQuizQuestions(data.results.map((item) => ({
+        id: nanoid(),
+        question: item.question,
+        correct_answer: item.correct_answer,
+        // so that the answers are shuffled before passing as props to Quiz component
+        answers: shuffleArray([...item.incorrect_answers, item.correct_answer])
+    })))
+    }
+    getQuizQuestionsData()
+  }, [])
+
   // --! fetch data from url !--
   // any time the quizSelection changes, the useEffect hook will run
   // apiresultArray is an array of objects
-  useEffect(() => {
-    const url = `https://opentdb.com/api.php?amount=5&category=${quizSelection.category}&difficulty=${quizSelection.difficulty}&type=multiple`;
-    // console.log(url)
-    fetch(url)
-        .then(res => res.json())
-        .then(data => {
-            // Log the data received from the API
-            // console.log("is data.results from API an array?");
-            // console.log(Array.isArray(data.results));
-            // console.log(data.results);
-            // Check if data.results exists before mapping over it
-            if (data.results && Array.isArray(data.results)) {
-                // setter functions to set quizQuestions - mapping through each item to get questions & answers
-                setQuizQuestions(data.results.map((item) => ({
-                    id: nanoid(),
-                    question: item.question,
-                    correct_answer: item.correct_answer,
-                    // so that the answers are shuffled before passing as props to Quiz component
-                    answers: shuffleArray([...item.incorrect_answers, item.correct_answer])
-                })));
-            } else {
-                console.log('Data received from the API does not have the expected structure');
-            }
-        });
-  }, [quizSelection]);
-    // console.log("this has shuffled answers")
-    // console.log(quizQuestions)
+  // useEffect(() => {
+  //   const url = `https://opentdb.com/api.php?amount=5&category=${quizSelection.category}&difficulty=${quizSelection.difficulty}&type=multiple`;
+  //   // console.log(url)
+  //   fetch(url)
+  //       .then(res => res.json())
+  //       .then(data => {
+  //           // Log the data received from the API
+  //           // console.log("is data.results from API an array?");
+  //           // console.log(Array.isArray(data.results));
+  //           // console.log(data.results);
+  //           // Check if data.results exists before mapping over it
+  //           if (data.results && Array.isArray(data.results)) {
+  //               // setter functions to set quizQuestions - mapping through each item to get questions & answers
+  //               setQuizQuestions(data.results.map((item) => ({
+  //                   id: nanoid(),
+  //                   question: item.question,
+  //                   correct_answer: item.correct_answer,
+  //                   // so that the answers are shuffled before passing as props to Quiz component
+  //                   answers: shuffleArray([...item.incorrect_answers, item.correct_answer])
+  //               })));
+  //           } else {
+  //               console.log('Data received from the API does not have the expected structure');
+  //           }
+  //       });
+  // }, [quizSelection]);
+  //   // console.log("this has shuffled answers")
+  //   // console.log(quizQuestions)
+
+  // ---! FUNCTION TO RENDER QuizResult COMPONENT !---
+  function renderQuizResult() {
+    setIsStartQuiz(false)
+  }
 
   return (
     <main>
@@ -112,9 +137,17 @@ function App() {
       {/* Render Quiz component if isStartQuiz is true */}
       {isStartQuiz
         &&
-        <Quiz
-          quizQuestions={quizQuestions}
-        /> }
+      <Quiz
+        quizQuestions={quizQuestions}
+        setIsStartQuiz={setIsStartQuiz}
+        renderQuizResult={renderQuizResult}
+      /> }
+
+      {/* Render Quiz Result component after sumitting the answers */}
+        {/* {score.showScore && !isStartQuiz && (
+        <QuizResult score={score}
+        />)} */}
+
     </main>
   )
 }
