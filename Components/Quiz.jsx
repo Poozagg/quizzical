@@ -8,12 +8,7 @@ export default function Quiz(props) {
 
   // --! function to handle the submit button !--
   function handleSubmit() {
-    // e.defaultPrevent()
-    // console.log(e.target.value)
-    // setUserAnswers({
-    //   ...userAnswers,
-    //   [e.target.name]: e.target.value
-    // })
+    calculateScore(userAnswers, props.quizQuestions)
   }
 
   // --! function to handle the change in the answer selected by User !--
@@ -25,9 +20,24 @@ export default function Quiz(props) {
       [e.target.name]: e.target.value
     })
   }
+  console.log(userAnswers)
 
-  // --! function to shuffle the answers !--
-  // note suffles once and then doesnt shuffle again at
+  // --! check userAnser against correct answer & tally up !--
+  function calculateScore(userAnswers, quizQuestions) {
+    let correctScore = props.score.correct
+    let incorrectScore = props.score.incorrect++
+
+    for (let i = 0; i < quizQuestions.length; i++) {
+      if (userAnswers[quizQuestions[i].id] === quizQuestions[i].correct_answer) {
+        correctScore++
+      } else {
+        incorrectScore++
+      }
+    }
+    // return console.log({ correctScore , incorrectScore })
+    return { correctScore , incorrectScore }
+
+  }
 
 
   // --! function which will display the questions and answer options !--
@@ -74,5 +84,6 @@ export default function Quiz(props) {
 }
 
 Quiz.propTypes = {
-  quizQuestions: PropTypes.array.isRequired
+  quizQuestions: PropTypes.array.isRequired,
+  score: PropTypes.object.isRequired
 }

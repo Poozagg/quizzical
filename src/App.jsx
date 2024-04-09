@@ -46,14 +46,13 @@ function App() {
 
 
   function handleCategoryChange(e) {
-    console.log(e.target.name, e.target.value)
+    // console.log(e.target.name, e.target.value)
     setCategory(e.target.value)
   }
   function handleDifficultyChange(e) {
-    console.log(e.target.name, e.target.value)
+    // console.log(e.target.name, e.target.value)
     setDifficulty(e.target.value)
   }
-  console.log(quizSelection)
   // --! callback function as props to QuizSelection component so that props can be passed to App!--
   function handleSubmit(e) {
     // when the form is submitted, preventing the default form submission behavior
@@ -73,13 +72,13 @@ function App() {
   // apiresultArray is an array of objects
   useEffect(() => {
     const url = `https://opentdb.com/api.php?amount=10&category=${quizSelection.category}&difficulty=${quizSelection.difficulty}&type=multiple`;
-    console.log(url)
+    // console.log(url)
     fetch(url)
         .then(res => res.json())
         .then(data => {
             // Log the data received from the API
-            console.log("is data.results from API an array?");
-            console.log(Array.isArray(data.results));
+            // console.log("is data.results from API an array?");
+            // console.log(Array.isArray(data.results));
             // console.log(data.results);
             // Check if data.results exists before mapping over it
             if (data.results && Array.isArray(data.results)) {
@@ -96,14 +95,8 @@ function App() {
             }
         });
   }, [quizSelection]);
-    console.log("this has shuffled answers")
-    console.log(quizQuestions)
-
-  function displayQuiz() {
-    // callback function to display the quiz after category and difficulty are selected
-    setIsStartQuiz(true)
-    // console.log(isStartQuiz)
-  }
+    // console.log("this has shuffled answers")
+    // console.log(quizQuestions)
 
   return (
     <main>
@@ -120,7 +113,6 @@ function App() {
           quizSelection={quizSelection}
           category={category}
           difficulty={difficulty}
-          // displayQuiz={displayQuiz}
         />
       )}
 
