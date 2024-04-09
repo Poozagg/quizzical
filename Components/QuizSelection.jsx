@@ -59,7 +59,7 @@ export default function QuizSelection(props) {
 
         <button
           className='start--button'
-          onClick={props.displayQuiz}
+          // onClick={props.displayQuiz}
           type='submit'
         >
           Start Quiz
