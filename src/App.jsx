@@ -171,7 +171,11 @@ function App() {
       /> }
 
       {/* Render Quiz Result component after sumitting the answers */}
-      {score.showScore && !isBegin && !isStartQuiz && <QuizResult score={score} />}
+      {score.showScore && !isBegin && !isStartQuiz &&
+      <QuizResult
+        score={score}
+        quizQuestions={quizQuestions}
+      />}
 
     </main>
   )
