@@ -3,7 +3,9 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  /* height: 100vh; */
 }
+
 /* ---begin button---- */
 .begin--button {
   cursor: pointer;
@@ -117,4 +119,9 @@ input[class="Quiz--Answer--Options "]{
 .radio--button--styling label:hover {
   cursor: pointer;
   background-color: #D6DBF5;
+}
+/* --------------! style horizontal--line!---------------- */
+.horizontal--line {
+  border: 0.05rem solid #DBDEF0;
+  margin-top: 1rem;
 }

@@ -59,7 +59,6 @@ export default function QuizSelection(props) {
 
         <button
           className='start--button'
-          onClick={props.displayQuiz}
           type='submit'
         >
           Start Quiz
@@ -75,7 +74,6 @@ QuizSelection.propTypes = {
   handleCategoryChange: PropTypes.func.isRequired,
   handleDifficultyChange: PropTypes.func.isRequired,
   quizSelection: PropTypes.object.isRequired,
-  displayQuiz: PropTypes.func.isRequired,
   category: PropTypes.string.isRequired,
   difficulty: PropTypes.string.isRequired
 };
