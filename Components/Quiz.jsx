@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types'
 // import shuffleArray from 'shuffle-array'
 import { decode } from 'html-entities'
-import { useState } from 'react'
-import QuizResult from './QuizResult'
+
 
 export default function Quiz(props) {
   // const [userAnswers, setUserAnswers] = useState([])

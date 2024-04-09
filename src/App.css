@@ -125,3 +125,21 @@ input[class="Quiz--Answer--Options "]{
   border: 0.05rem solid #DBDEF0;
   margin-top: 1rem;
 }
+/* --------------! play--again--button !------------------- */
+.play--again--button {
+  cursor: pointer;
+  background-color: #4D5B9E;
+  color: #F5F7FB;
+  width: 12rem;
+  height: 3rem;
+  font-weight: bold;
+  border-radius: 1rem;
+  /* margin-top: 1rem; */
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  /* font-size: 1.2rem; */
+}
+
+.play--again--button:hover {
+  background-color: rgb(228, 144, 201);
+  color: #F5F7FB;
+}
