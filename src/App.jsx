@@ -9,7 +9,7 @@ import { render } from 'react-dom'
 import QuizResult from '../Components/QuizResult'
 
 function App() {
-  // begin i.e. select category and difficulty if you are ready
+  // if its true it displays the QuizSelection component
   const [isBegin, setIsBegin] = useState(false)
 
   // to store the category and difficulty selected by the user
@@ -22,11 +22,21 @@ function App() {
     difficulty: difficulty,
   })
 
-  // to start quiz after selecting category and difficulty
+  // if this is true displays the Quiz component
   const [isStartQuiz, setIsStartQuiz] = useState(false)
 
   // to store the Q&A from the API which will be displayed
   const [quizQuestions, setQuizQuestions] = useState([])
+
+  // --! TO STORE THE USER INPUT/ANSWERS !--
+  const [userAnswers, setUserAnswers] = useState([])
+
+  // !---Score to tally up the correct and incorrect answers---!
+  const [score, setScore] = useState({
+    correct: 0,
+    incorrect: 0,
+    showScore: false
+  })
 
   // when you click begin quiz button
   // you should see the QuizSelections component
@@ -67,53 +77,69 @@ function App() {
   useEffect(() => {
     async function getQuizQuestionsData() {
       const url = `https://opentdb.com/api.php?amount=5&category=${quizSelection.category}&difficulty=${quizSelection.difficulty}&type=multiple`;
+      // console.log(url)
       const res = await fetch(url)
       const data = await res.json()
-      setQuizQuestions(data.results.map((item) => ({
-        id: nanoid(),
-        question: item.question,
-        correct_answer: item.correct_answer,
-        // so that the answers are shuffled before passing as props to Quiz component
-        answers: shuffleArray([...item.incorrect_answers, item.correct_answer])
-    })))
+
+      // console.log("is data.results from API an array?");
+      // console.log(Array.isArray(data.results));
+      // console.log(data.results);
+
+      if (data.results && Array.isArray(data.results)) {
+        setQuizQuestions(data.results.map((item) => ({
+          id: nanoid(),
+          question: item.question,
+          correct_answer: item.correct_answer,
+          answers: shuffleArray([...item.incorrect_answers, item.correct_answer])
+        })));
+      } else {
+        console.error('Data received from the API does not have the expected structure:', data);
+      }
+
     }
     getQuizQuestionsData()
-  }, [])
+  }, [quizSelection])
 
-  // --! fetch data from url !--
-  // any time the quizSelection changes, the useEffect hook will run
-  // apiresultArray is an array of objects
-  // useEffect(() => {
-  //   const url = `https://opentdb.com/api.php?amount=5&category=${quizSelection.category}&difficulty=${quizSelection.difficulty}&type=multiple`;
-  //   // console.log(url)
-  //   fetch(url)
-  //       .then(res => res.json())
-  //       .then(data => {
-  //           // Log the data received from the API
-  //           // console.log("is data.results from API an array?");
-  //           // console.log(Array.isArray(data.results));
-  //           // console.log(data.results);
-  //           // Check if data.results exists before mapping over it
-  //           if (data.results && Array.isArray(data.results)) {
-  //               // setter functions to set quizQuestions - mapping through each item to get questions & answers
-  //               setQuizQuestions(data.results.map((item) => ({
-  //                   id: nanoid(),
-  //                   question: item.question,
-  //                   correct_answer: item.correct_answer,
-  //                   // so that the answers are shuffled before passing as props to Quiz component
-  //                   answers: shuffleArray([...item.incorrect_answers, item.correct_answer])
-  //               })));
-  //           } else {
-  //               console.log('Data received from the API does not have the expected structure');
-  //           }
-  //       });
-  // }, [quizSelection]);
-  //   // console.log("this has shuffled answers")
-  //   // console.log(quizQuestions)
-
-  // ---! FUNCTION TO RENDER QuizResult COMPONENT !---
-  function renderQuizResult() {
+  // --! function to handle the submit button !--
+  function handleSubmitAnswers() {
+    // console.log("submit button clicked")
+    const calculatedScore = calculateScore(userAnswers, quizQuestions)
+    // console.log(calculatedScore.correctScore, calculatedScore.incorrectScore)
+    setScore({
+      ...score,
+      showScore: true,
+      correct: calculatedScore.correctScore,
+      incorrect: calculatedScore.incorrectScore
+    })
     setIsStartQuiz(false)
+    setIsBegin(false)
+    // renderQuizResults
+  }
+
+  // --! function to handle the change in the answer selected by User !--
+  function onOptionChange(e) {
+    // console.log(e.target.name, e.target.value)
+    // item id as name & answer as value
+    setUserAnswers({
+      ...userAnswers,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  // --! FUNCTION TO CHECK WHETHER userAnswer IS CORRECT & TALLY UP THE SCORE !--
+  function calculateScore(userAnswers, quizQuestions) {
+    let correctScore = score.correct
+    let incorrectScore = score.incorrect++
+
+    for (let i = 0; i < quizQuestions.length; i++) {
+      if (userAnswers[quizQuestions[i].id] === quizQuestions[i].correct_answer) {
+        correctScore++
+      } else {
+        incorrectScore++
+      }
+    }
+    // return console.log({ correctScore , incorrectScore })
+    return { correctScore, incorrectScore }
   }
 
   return (
@@ -121,7 +147,7 @@ function App() {
 
       {/* {componentRendering()} */}
 
-      {isBegin === false && <Intro clickHandler={begin} />}
+      {isBegin === false && !score.showScore && <Intro clickHandler={begin} />}
 
       {isBegin === true && !isStartQuiz && (
         <QuizSelection
@@ -139,14 +165,13 @@ function App() {
         &&
       <Quiz
         quizQuestions={quizQuestions}
-        setIsStartQuiz={setIsStartQuiz}
-        renderQuizResult={renderQuizResult}
+        onOptionChange={onOptionChange}
+        handleSubmitAnswers={handleSubmitAnswers}
+        userAnswers={userAnswers}
       /> }
 
       {/* Render Quiz Result component after sumitting the answers */}
-        {/* {score.showScore && !isStartQuiz && (
-        <QuizResult score={score}
-        />)} */}
+      {score.showScore && !isBegin && !isStartQuiz && <QuizResult score={score} />}
 
     </main>
   )
