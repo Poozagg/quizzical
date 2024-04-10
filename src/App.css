@@ -88,7 +88,7 @@ input[class="Quiz--Answer--Options "]{
   display: inline-block;
   color: #293264
 }
-
+/* -----------For Quiz component when user has to input the answers------------- */
 /* ------radio button css--------- */
 .radio--button--styling input[type="radio"] {
   opacity: 0;
@@ -128,7 +128,7 @@ input[class="Quiz--Answer--Options "]{
 /* --------------! play--again--button !------------------- */
 .play--again--button {
   cursor: pointer;
-  background-color: #4D5B9E;
+  background-color: rgba(77, 91, 158, 1);
   color: #F5F7FB;
   width: 12rem;
   height: 3rem;
@@ -142,4 +142,24 @@ input[class="Quiz--Answer--Options "]{
 .play--again--button:hover {
   background-color: rgb(228, 144, 201);
   color: #F5F7FB;
+}
+/* -----------For QuizResult component when program displays the result & answers------------- */
+/* ------radio button css--------- */
+.radio--display--styling input[type="radio"] {
+  opacity: 0;
+  position: fixed;
+  width: 0;
+}
+.radio--display--styling label {
+  list-style-type: none;
+  display: inline-block;
+  border: 0.1rem solid #D6DBF5;
+  border-radius: 1rem;
+  margin-right: 1rem;
+  padding: 0.4rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin-bottom: 0.5rem;
+  /* background-color: rgba(245, 247, 251, 1); */
+  /* color: rgba(41, 50, 100, 0.5); */
 }

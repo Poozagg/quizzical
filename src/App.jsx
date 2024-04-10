@@ -29,7 +29,7 @@ function App() {
   const [quizQuestions, setQuizQuestions] = useState([])
 
   // --! TO STORE THE USER INPUT/ANSWERS !--
-  const [userAnswers, setUserAnswers] = useState([])
+  const [userAnswers, setUserAnswers] = useState({})
 
   // !---Score to tally up the correct and incorrect answers---!
   const [score, setScore] = useState({
@@ -142,6 +142,17 @@ function App() {
     return { correctScore, incorrectScore }
   }
 
+  // --! function to handle the play again button !--
+  function handlePlayAgain() {
+    setScore({
+      correct: 0,
+      incorrect: 0,
+      showScore: false
+    })
+    setUserAnswers({})
+    setIsBegin(false)
+  }
+
   return (
     <main>
 
@@ -175,6 +186,8 @@ function App() {
       <QuizResult
         score={score}
         quizQuestions={quizQuestions}
+        userAnswers={userAnswers}
+        handlePlayAgain={handlePlayAgain}
       />}
 
     </main>
