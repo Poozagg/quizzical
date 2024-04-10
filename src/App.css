@@ -128,7 +128,7 @@ input[class="Quiz--Answer--Options "]{
 /* --------------! play--again--button !------------------- */
 .play--again--button {
   cursor: pointer;
-  background-color: #4D5B9E;
+  background-color: rgba(77, 91, 158, 1);
   color: #F5F7FB;
   width: 12rem;
   height: 3rem;

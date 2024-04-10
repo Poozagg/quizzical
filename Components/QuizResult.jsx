@@ -45,16 +45,16 @@ export default function QuizResult(props) {
   })
   return (
     <div>
-      <h2> Quiz Result</h2>
-      <h3>YOU SCORED {props.score.correct}/5 CORRECT ANSWERS </h3>
-      {questionAndAnswers}
-
+      {/* <h2> Quiz Result</h2> */}
+      <h3>You scored {props.score.correct}/5 correct answers </h3>
       <button
         className='play--again--button'
         // onClick={props.handleSubmitAnswers}
       >
         Play Again
       </button>
+      {/* display the quiz that user just answered */}
+      {questionAndAnswers}
     </div>
   )
 }
