@@ -49,7 +49,7 @@ export default function QuizResult(props) {
       <h3>You scored {props.score.correct}/5 correct answers </h3>
       <button
         className='play--again--button'
-        // onClick={props.handleSubmitAnswers}
+        onClick={props.handlePlayAgain}
       >
         Play Again
       </button>
@@ -62,4 +62,5 @@ QuizResult.propTypes = {
   score: PropTypes.object.isRequired,
   quizQuestions: PropTypes.array.isRequired,
   userAnswers: PropTypes.object.isRequired,
+  handlePlayAgain: PropTypes.func.isRequired,
 }

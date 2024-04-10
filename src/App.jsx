@@ -142,6 +142,17 @@ function App() {
     return { correctScore, incorrectScore }
   }
 
+  // --! function to handle the play again button !--
+  function handlePlayAgain() {
+    setScore({
+      correct: 0,
+      incorrect: 0,
+      showScore: false
+    })
+    setUserAnswers({})
+    setIsBegin(false)
+  }
+
   return (
     <main>
 
@@ -176,6 +187,7 @@ function App() {
         score={score}
         quizQuestions={quizQuestions}
         userAnswers={userAnswers}
+        handlePlayAgain={handlePlayAgain}
       />}
 
     </main>
