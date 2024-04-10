@@ -88,7 +88,7 @@ input[class="Quiz--Answer--Options "]{
   display: inline-block;
   color: #293264
 }
-
+/* -----------For Quiz component when user has to input the answers------------- */
 /* ------radio button css--------- */
 .radio--button--styling input[type="radio"] {
   opacity: 0;
@@ -143,3 +143,4 @@ input[class="Quiz--Answer--Options "]{
   background-color: rgb(228, 144, 201);
   color: #F5F7FB;
 }
+/* -----------For QuizResult component when program displays the result & answers------------- */

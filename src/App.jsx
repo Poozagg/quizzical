@@ -175,6 +175,7 @@ function App() {
       <QuizResult
         score={score}
         quizQuestions={quizQuestions}
+        userAnswers={userAnswers}
       />}
 
     </main>

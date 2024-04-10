@@ -20,7 +20,8 @@ export default function QuizResult(props) {
                 name={item.id}
                 value={answer}
                 // defaultChecked={props.userAnswers[item.id] === answer}
-                // checked={props.userAnswers[item.id] === answer}
+                checked={props.userAnswers[item.id] === answer}
+                disabled // to disable the radio button
                 // onChange={props.onOptionChange}
               />
               {/* decoding the answer to display ONLY!! */}
@@ -47,7 +48,8 @@ export default function QuizResult(props) {
     </div>
   )
 }
-PropTypes.QuizResult = {
+QuizResult.propTypes = {
   score: PropTypes.object.isRequired,
   quizQuestions: PropTypes.array.isRequired,
+  userAnswers: PropTypes.array.isRequired,
 }
