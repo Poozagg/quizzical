@@ -29,7 +29,7 @@ export default function QuizResult(props) {
                 htmlFor={answer}
                 // to change the background color based on the answer selected & display the correct answer
                 style={{
-                  "background-color": answer === item.correct_answer ? 'rgba(148, 215, 162, 1)' :
+                  "backgroundColor": answer === item.correct_answer ? 'rgba(148, 215, 162, 1)' :
                                       answer === props.userAnswers[item.id] ? 'rgba(248, 188, 188, 0.5)' : 'rgba(245, 247, 251, 1)',
                   "color": answer === item.correct_answer ? 'rgba(41, 50, 100, 1)' : 'rgba(41, 50, 100, 0.5)'
                 }}
