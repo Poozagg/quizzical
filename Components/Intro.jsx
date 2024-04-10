@@ -4,7 +4,7 @@ export default function Intro(props) {
     <div>
       <h1> Quizzical </h1>
       <h3> Ready to test your knowledge? </h3>
-      <h3> Welcome aboard the Quizzical app! </h3> <img src="/public/quiz.png" alt="logo" width="30%" />
+      <h3> Welcome aboard the Quizzical app! </h3> <img src="../public/quiz.png" alt="logo" width="30%" />
       <br />
         <button
           className="begin--button"
