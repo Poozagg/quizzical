@@ -14,7 +14,7 @@ export default function QuizResult(props) {
           {item.answers.map((answer, index) => (
             <li className="Quiz--Answer--Options" key={index}>
               <input
-                className='quiz--answer--styling'
+                // className='quiz--answer--styling'
                 type='radio'
                 id={answer}
                 name={item.id}
@@ -25,7 +25,17 @@ export default function QuizResult(props) {
                 // onChange={props.onOptionChange}
               />
               {/* decoding the answer to display ONLY!! */}
-              <label htmlFor={answer}>{decode(answer)}</label>
+              <label
+                htmlFor={answer}
+                // to change the background color based on the answer selected & display the correct answer
+                style={{
+                  "background-color": answer === item.correct_answer ? 'rgba(148, 215, 162, 1)' :
+                                      answer === props.userAnswers[item.id] ? 'rgba(248, 188, 188, 0.5)' : 'rgba(245, 247, 251, 1)',
+                  "color": answer === item.correct_answer ? 'rgba(41, 50, 100, 1)' : 'rgba(41, 50, 100, 0.5)'
+                }}
+              >
+                {decode(answer)}
+              </label>
             </li>
           ))}
           <hr className="horizontal--line" />
