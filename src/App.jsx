@@ -29,7 +29,7 @@ function App() {
   const [quizQuestions, setQuizQuestions] = useState([])
 
   // --! TO STORE THE USER INPUT/ANSWERS !--
-  const [userAnswers, setUserAnswers] = useState([])
+  const [userAnswers, setUserAnswers] = useState({})
 
   // !---Score to tally up the correct and incorrect answers---!
   const [score, setScore] = useState({

@@ -10,7 +10,7 @@ export default function QuizResult(props) {
     return (
       <div key={item.id}>
         <h3>{decode(item.question)}</h3>
-        <ul className="radio--button--styling">
+        <ul className="radio--display--styling">
           {item.answers.map((answer, index) => (
             <li className="Quiz--Answer--Options" key={index}>
               <input
@@ -51,5 +51,5 @@ export default function QuizResult(props) {
 QuizResult.propTypes = {
   score: PropTypes.object.isRequired,
   quizQuestions: PropTypes.array.isRequired,
-  userAnswers: PropTypes.array.isRequired,
+  userAnswers: PropTypes.object.isRequired,
 }

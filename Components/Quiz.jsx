@@ -4,54 +4,6 @@ import { decode } from 'html-entities'
 
 
 export default function Quiz(props) {
-  // const [userAnswers, setUserAnswers] = useState([])
-
-  // ----! to count the score of the user ! ----
-  // also need boolean to check if the score to be displayed
-  // const [score, setScore] = useState({
-  //   correct: 0,
-  //   incorrect: 0,
-  //   showScore: false
-  // })
-
-  // --! function to handle the submit button !--
-  // function handleSubmit() {
-  //   calculateScore(userAnswers, props.quizQuestions)
-  //   setScore({
-  //     ...score,
-  //     showScore: true
-  //   })
-  //   props.renderQuizResults
-  // }
-
-  // // --! function to handle the change in the answer selected by User !--
-  // function onOptionChange(e) {
-  //   // console.log(e.target.name, e.target.value)
-  //   // item id as name & answer as value
-  //   setUserAnswers({
-  //     ...userAnswers,
-  //     [e.target.name]: e.target.value
-  //   })
-  // }
-  // console.log(userAnswers)
-
-  // --! check userAnser against correct answer & tally up !--
-  // function calculateScore(userAnswers, quizQuestions) {
-  //   let correctScore = score.correct
-  //   let incorrectScore = score.incorrect++
-
-  //   for (let i = 0; i < quizQuestions.length; i++) {
-  //     if (userAnswers[quizQuestions[i].id] === quizQuestions[i].correct_answer) {
-  //       correctScore++
-  //     } else {
-  //       incorrectScore++
-  //     }
-  //   }
-  //   // return console.log({ correctScore , incorrectScore })
-  //   return { correctScore, incorrectScore }
-  // }
-
-
   // --! function which will display the questions and answer options !--
   const questionAndAnswers = props.quizQuestions.map((item) => {
     // const answers = shuffleArray(item.answers)
@@ -79,7 +31,6 @@ export default function Quiz(props) {
     )
   })
 
-
   return (
     <div>
       <div>
@@ -97,7 +48,7 @@ export default function Quiz(props) {
 
 Quiz.propTypes = {
   quizQuestions: PropTypes.array.isRequired,
-  userAnswers: PropTypes.array.isRequired,
+  userAnswers: PropTypes.object.isRequired,
   onOptionChange: PropTypes.func.isRequired,
   handleSubmitAnswers: PropTypes.func.isRequired,
 }
